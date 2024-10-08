@@ -31,3 +31,15 @@ Check unit test coverage
 ```
 pnpm run test:coverage
 ```
+
+Run linter
+
+```
+pnpm run lint
+```
+
+Run formatter
+
+```
+pnpm run format
+```

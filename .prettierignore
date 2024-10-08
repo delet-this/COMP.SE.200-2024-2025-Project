@@ -1,0 +1,6 @@
+# These files are provided by the assignment template
+src/*
+
+pnpm-lock.yaml
+
+.github/workflows/**/*.yml

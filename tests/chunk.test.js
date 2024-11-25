@@ -14,4 +14,8 @@ describe("chunk.js", () => {
   test("Array of length 0 split into chunks of length 2", async () => {
     expect(chunk([], 2)).toEqual([]);
   });
+
+  test("Array of length 2 split into chunks of 3, expecting array of length 2", async () => {
+    expect(chunk(['a', 'b'], 3)).toEqual(['a', 'b']);
+  });
 });

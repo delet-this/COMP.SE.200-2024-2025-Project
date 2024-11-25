@@ -16,6 +16,6 @@ describe("toNumber.js", () => {
   });
 
   test("Input 'abc', expecting an error", async () => {
-    expect(toNumber()).toThrow();
+    expect(() => toNumber("abc")).toThrowError();
   });
 });

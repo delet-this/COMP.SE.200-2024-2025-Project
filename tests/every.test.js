@@ -1,13 +1,36 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect, vitest } from "vitest";
 
 import every from "src/every.js";
 
+const gtZero = (x) => x > 0
+
 describe("every.js", () => {
-  test("Array of integers above zero using predicate x>0, expecting true", async () => {
-    expect(every([1, 2, 3], (x) => x>0)).toBe(true);
+  describe("Predicate x > 0", () => {
+    test("All integers greater than zero", async () => {
+      const gtZeroMock = vitest.fn(gtZero);
+      expect(every([1, 2, 3], gtZeroMock)).toBe(true);
+      expect(gtZeroMock).toHaveBeenCalledTimes(3);
+    });
+
+    test("One integer equal to zero", async () => {
+      const gtZeroMock = vitest.fn(gtZero);
+      expect(every([1, 0, 3], gtZeroMock)).toBe(false);
+      expect(gtZeroMock).toHaveBeenCalledTimes(2);
+    });
+
+    test("One integer less than zero", async () => {
+      const gtZeroMock = vitest.fn(gtZero);
+      expect(every([-1, 2, 3], gtZeroMock)).toBe(false);
+      expect(gtZeroMock).toHaveBeenCalledTimes(1);
+    });
   });
 
-  test("Array of integers with one zero using predicate x>0, expecting false", async () => {
-    expect(every([1, 0, 3], (x) => x>0)).toBe(false);
+  test("Null array", async () => {
+    expect(every([])).toBe(true);
+    expect(every([], gtZero)).toBe(true);
+  });
+
+  test("No predicate", async () => {
+    expect(every([1, 2, 3], () => {})).toBe(false);
   });
 });

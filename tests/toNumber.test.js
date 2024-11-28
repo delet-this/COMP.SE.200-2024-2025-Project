@@ -3,19 +3,46 @@ import { describe, test, expect } from "vitest";
 import toNumber from "src/toNumber.js";
 
 describe("toNumber.js", () => {
-  test("Input '1', expecting 1", async () => {
-    expect(toNumber("1")).toEqual(1);
+  describe("Strings", () => {
+    test("Integers", async () => {
+      expect(toNumber("1")).toEqual(1);
+      expect(toNumber("0")).toEqual(0);
+      expect(toNumber("-1")).toEqual(-1);
+    });
+
+    test("Decimals", async () => {
+      expect(toNumber("1.2")).toEqual(1.2);
+      expect(toNumber("1.23")).toEqual(1.23);
+      expect(toNumber("-1.2")).toEqual(-1.2);
+    });
+
+    test("Non-numeric string", async () => {
+      expect(() => toNumber("abc")).toEqual(NaN);
+    });
   });
 
-  test("Input '1.2', expecting 1.2", async () => {
-    expect(toNumber("1.2")).toEqual(1.2);
+  describe("Numbers", () => {
+    test("Integers", async () => {
+      expect(toNumber(1)).toEqual(1);
+      expect(toNumber(0)).toEqual(0);
+      expect(toNumber(-1)).toEqual(-1);
+    });
+
+    test("Decimals", async () => {
+      expect(toNumber(1.2)).toEqual(1.2);
+      expect(toNumber(1.23)).toEqual(1.23);
+      expect(toNumber(-1.2)).toEqual(-1.2);
+    });
+
+    test("Static values", async () => {
+      expect(toNumber(Infinity)).toEqual(Infinity);
+      expect(toNumber(Number.MAX_VALUE)).toEqual(Number.MAX_VALUE);
+      expect(toNumber(Number.MIN_VALUE)).toEqual(Number.MIN_VALUE);
+    });
   });
 
-  test("Input '1.23', expecting 1.23", async () => {
-    expect(toNumber("1.23")).toEqual(1.23);
-  });
-
-  test("Input 'abc', expecting an error", async () => {
-    expect(() => toNumber("abc")).toThrowError();
+  test("Arrays", async () => {
+    expect(toNumber([1])).toEqual(1);
+    expect(toNumber([1, 2])).toEqual(NaN);
   });
 });

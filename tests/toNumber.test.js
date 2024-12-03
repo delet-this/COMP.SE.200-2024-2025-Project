@@ -17,7 +17,7 @@ describe("toNumber.js", () => {
     });
 
     test("Non-numeric string", async () => {
-      // expect(() => toNumber("abc")).toEqual(NaN);
+      expect(() => toNumber("abc")).toEqual(NaN);
     });
   });
 

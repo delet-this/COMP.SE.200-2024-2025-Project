@@ -22,7 +22,7 @@ describe("isEmpty.js", () => {
     });
 
     test("Map", async () => {
-      expect(isEmpty({"foo": "bar"})).toBe(false);
+      expect(isEmpty({ foo: "bar" })).toBe(false);
       expect(isEmpty(new Map([]))).toBe(true);
     });
 

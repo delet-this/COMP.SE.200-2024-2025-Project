@@ -4,7 +4,13 @@ import words from "src/words.js";
 
 describe("words.js", () => {
   test("Alphanumerics", async () => {
-    expect(words("The 10 quick brown foxes")).toEqual(["The", "10", "quick", "brown", "foxes"]);
+    expect(words("The 10 quick brown foxes")).toEqual([
+      "The",
+      "10",
+      "quick",
+      "brown",
+      "foxes",
+    ]);
   });
 
   test("Non-standard latin alphabets", async () => {
@@ -22,6 +28,10 @@ describe("words.js", () => {
   });
 
   test("Using regex", async () => {
-    expect(words("foo & bar 10%", /[a-z]+|\d+%*/g)).toEqual(["foo", "bar", "10%"]);
+    expect(words("foo & bar 10%", /[a-z]+|\d+%*/g)).toEqual([
+      "foo",
+      "bar",
+      "10%",
+    ]);
   });
 });

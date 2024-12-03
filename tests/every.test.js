@@ -2,7 +2,7 @@ import { describe, test, expect, vitest } from "vitest";
 
 import every from "src/every.js";
 
-const gtZero = (x) => x > 0
+const gtZero = (x) => x > 0;
 
 describe("every.js", () => {
   describe("Predicate x > 0", () => {
